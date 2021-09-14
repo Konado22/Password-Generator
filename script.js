@@ -4,8 +4,6 @@ var generateBtn = document.querySelector("#generate");
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword()
-  var passwordText = document.querySelector("#password");
-  passwordText.value = password;
 }
 var parameters= {};
 
@@ -41,14 +39,26 @@ function generatePassword() {
     parameters.specialchar=specialchar
   }
 
-  buildPassword()
+  buildPassword(length1)
+
 }
 
-function buildPassword() {
-  console.log(parameters)
+function buildPassword(length1) {
+  let charArray = []
   for (let i in parameters){
     console.log(parameters[i])
-  }
+    charArray = charArray.concat(parameters[i])
+   }
+  let password= []
+  for (let i=0; i<length1;i++){
+    const rand = Math.floor(Math.random()*charArray.length)
+    const randomCharacter = charArray[rand]
+    password.push(randomCharacter)
+  }  
+  var passwordText = document.querySelector("#password");
+  console.log(passwordText)
+  passwordText.innerText= password.join("");
+  console.log(password.join(""))
 }
 
 
